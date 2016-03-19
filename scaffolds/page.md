@@ -2,7 +2,7 @@
 title: {{ title }}
 date: {{ date }}
 updated: {{ date }}
-categories:
+duoshuo_hotartical: false
 ---
 
 
