@@ -1,7 +1,7 @@
 ---
 title: Android 日志的优化实践
 date: 2015-11-04 17:16:19
-updated: 2015-11-14 17:16:19
+updated: 2016-03-30 17:16:19
 tags:
 - android
 - log
@@ -9,11 +9,12 @@ categories:
 - android
 ---
 
-- 最后更新: 2015-11-14
+- 最后更新: 2016-03-30
 - 修改记录:
 	* 2015-11-04 初稿
 	* 2015-11-10 增加日志需求
 	* 2015-11-14 增加实现细节
+	* 2016-03-30 图片本地化
 
 
 ## 1. 简介
@@ -213,32 +214,38 @@ public class MainActivity extends Activity {
 很多时候，我们仅需要个输出，于是就有了第一个需求，省略 TAG，或者说，我们希望有一个东西可以帮我们定义好TAG，我们只需要写正真有意义的内容就行。
 
 更进一步，虽然现在 IDE 都有了代码自动提示，但是能少打几个字总是好的。我们希望 `L` 来替代 `Log`
-![](http://7xqfqq.com1.z0.glb.clouddn.com/2016-03-19-14474252600535.jpg)
+![](/images/14593159827054.jpg)
 
 ### 然后呢，我们希望 log 输出的更加美观。最好输出的有一个 `超链接` ，点击就能跳转到相应的代码中
-![](http://7xqfqq.com1.z0.glb.clouddn.com/2016-03-19-14474254548953.jpg)
+![](/images/14593160049267.jpg)
+
 
  ==这个功能只支持 Android Studio，Eclipse只能输出,无法跳转==
 
 ### 有时候，我们需要的只是输出一个简单的字符，有时候，我们又希望能把函数调用的堆栈也打印出来。
-![](http://7xqfqq.com1.z0.glb.clouddn.com/2016-03-19-14474270903687.jpg)
+![](/images/14593161319131.jpg)
+
 或者是
-![](http://7xqfqq.com1.z0.glb.clouddn.com/2016-03-19-14474271902206.jpg)
+![](/images/14593161410375.jpg)
+
 
 
 
 ### 最好能支持数据的可视化，而不用手动去拼接字符串或者简单的通过 `Object.toString()` 来打印对象信息。
 
 * json 格式化
-![](http://7xqfqq.com1.z0.glb.clouddn.com/2016-03-19-14474166252179.jpg)
+![](/images/14593161539016.jpg)
 
 * 数组等数据结构
-![](http://7xqfqq.com1.z0.glb.clouddn.com/2016-03-19-14474294418591.jpg)
+![](/images/14593161652253.jpg)
+
 对应输出
-![](http://7xqfqq.com1.z0.glb.clouddn.com/2016-03-19-14474294935656.jpg)
+![](/images/14593161747214.jpg)
+
 
 * 其他对象
-![](http://7xqfqq.com1.z0.glb.clouddn.com/2016-03-19-14474295884906.jpg)
+![](/images/14593161920970.jpg)
+
 
 
 
@@ -249,7 +256,8 @@ public class MainActivity extends Activity {
 ## 6. 实现
 上面的需求实现的难度并不是很大，这里就大致介绍下实现的思路。
 
-![](http://7xqfqq.com1.z0.glb.clouddn.com/2016-03-19-14474327190712.jpg)
+![](/images/14593162006800.jpg)
+
 
 ### 获取当前类名
 
