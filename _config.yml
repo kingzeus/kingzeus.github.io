@@ -61,7 +61,7 @@ future: true
 highlight:
   enable: true
   line_number: true
-  auto_detect: false
+  auto_detect: true
   tab_replace:
 
 # comment/share
@@ -77,6 +77,16 @@ social:
   github: https://github.com/kingzeus
   weibo: http://www.weibo.com/2405704
   zhihu: https://www.zhihu.com/people/fan-ye-fei
+
+# auto sitemap
+sitemap:
+  path: sitemap.xml
+baidusitemap:
+  path: baidusitemap.xml
+
+
+baidu_site_verification: cYyZ5DHnbQ
+
 
 
 # Category & Tag
