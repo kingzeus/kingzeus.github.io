@@ -1,5 +1,5 @@
 ---
-title: Android View 的事件机制
+title: Android View 的事件机制详解
 date: 2016-04-13 20:25:52
 updated: 2016-04-13 20:25:52
 tags:
@@ -154,7 +154,7 @@ TouchSlop 可以用来防止按键位置的抖动。这个常量是设备相关�
 
 
 ## 6. 参考
-* [公共技术点之 View 事件传递] (http://p.codekk.com/blogs/detail/54cfab086c4761e5001b253e)
+* [公共技术点之 View 事件传递](http://p.codekk.com/blogs/detail/54cfab086c4761e5001b253e)
 * [View的事件分发机制](http://www.jianshu.com/p/49d4043621d6)
 
 
