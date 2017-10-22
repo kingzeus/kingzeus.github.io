@@ -104,7 +104,8 @@ TouchSlop 可以用来防止按键位置的抖动。这个常量是设备相关�
 * 事件处理
 当 onTouchEvent 返回 true ，表示事件被当前控件消费
 
-		ViewGroup2 中的 onInterceptTouchEvent 直接返回 true	  	ViewGroup2 中的 onTouchEvent 方法中添加 按下事件 返回 true
+		ViewGroup2 中的 onInterceptTouchEvent 直接返回 true
+	  	ViewGroup2 中的 onTouchEvent 方法中添加 按下事件 返回 true
 		当手指对View1点击、移动、抬起时
 		事件传递到 ViewGroup2 后被拦截，后续事件先发送给 ViewGroup2 处理，然后返回 Activity 处理
 
@@ -112,7 +113,8 @@ TouchSlop 可以用来防止按键位置的抖动。这个常量是设备相关�
 ![](/images/14609607629304.png)
 
 
-		ViewGroup2 中的 onInterceptTouchEvent 直接返回 true	  	ViewGroup2 中的 onTouchEvent 方法中 直接返回 true
+		ViewGroup2 中的 onInterceptTouchEvent 直接返回 true
+	  	ViewGroup2 中的 onTouchEvent 方法中 直接返回 true
 		当手指对View1点击、移动、抬起时
 		事件传递到 ViewGroup2 后被拦截，后续事件全部由 ViewGroup2 处理
 
