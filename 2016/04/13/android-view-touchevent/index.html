@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="cYyZ5DHnbQ" />
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="android,view,touchEvent," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="游戏 生活" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="最后更新: 2016-04-13 修改记录: 2014-04-13 初稿 2014-04-18 补充示例    1. View 事件分发机制View 是 Android UI 的一个基础，而事件分发机制是 View 的一个核心知识点更是一个难点，很多同学对这个问题都会比较困惑。而 View 的另一个难点滑动冲突的解决也依赖于事件分发机制。 1.1 MotionEventMotionEvent 用">
+<meta name="keywords" content="android,view,touchEvent">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android View 的事件机制详解">
+<meta property="og:url" content="http://kingzeus.github.io/2016/04/13/android-view-touchevent/index.html">
+<meta property="og:site_name" content="游戏 生活">
+<meta property="og:description" content="最后更新: 2016-04-13 修改记录: 2014-04-13 初稿 2014-04-18 补充示例    1. View 事件分发机制View 是 Android UI 的一个基础，而事件分发机制是 View 的一个核心知识点更是一个难点，很多同学对这个问题都会比较困惑。而 View 的另一个难点滑动冲突的解决也依赖于事件分发机制。 1.1 MotionEventMotionEvent 用">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://kingzeus.github.io/images/14605560667360.gif">
+<meta property="og:image" content="http://kingzeus.github.io/images/14609483250389.png">
+<meta property="og:image" content="http://kingzeus.github.io/images/14609484458874.png">
+<meta property="og:image" content="http://kingzeus.github.io/images/14609487247618.png">
+<meta property="og:image" content="http://kingzeus.github.io/images/14609490327325.png">
+<meta property="og:image" content="http://kingzeus.github.io/images/14609602211963.png">
+<meta property="og:image" content="http://kingzeus.github.io/images/14609607629304.png">
+<meta property="og:image" content="http://kingzeus.github.io/images/14609608813851.png">
+<meta property="og:image" content="http://kingzeus.github.io/images/14609611313192.png">
+<meta property="og:image" content="http://kingzeus.github.io/images/14609640887128.jpg">
+<meta property="og:updated_time" content="2016-04-13T12:25:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android View 的事件机制详解">
+<meta name="twitter:description" content="最后更新: 2016-04-13 修改记录: 2014-04-13 初稿 2014-04-18 补充示例    1. View 事件分发机制View 是 Android UI 的一个基础，而事件分发机制是 View 的一个核心知识点更是一个难点，很多同学对这个问题都会比较困惑。而 View 的另一个难点滑动冲突的解决也依赖于事件分发机制。 1.1 MotionEventMotionEvent 用">
+<meta name="twitter:image" content="http://kingzeus.github.io/images/14605560667360.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://kingzeus.github.io/2016/04/13/android-view-touchevent/"/>
+
+
+
+
+
+  <title>Android View 的事件机制详解 | 游戏 生活</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">游戏 生活</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">游戏是可以SL的人生，人生是没有NG的游戏</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://kingzeus.github.io/2016/04/13/android-view-touchevent/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kingzeus">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://7xqfqq.com1.z0.glb.clouddn.com/blog_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="游戏 生活">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android View 的事件机制详解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-13T20:25:52+08:00">
+                2016-04-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/android/" itemprop="url" rel="index">
+                    <span itemprop="name">android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/04/13/android-view-touchevent/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/13/android-view-touchevent/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li>最后更新: 2016-04-13</li>
+<li>修改记录:<ul>
+<li>2014-04-13 初稿</li>
+<li>2014-04-18 补充示例</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-View-事件分发机制"><a href="#1-View-事件分发机制" class="headerlink" title="1. View 事件分发机制"></a>1. View 事件分发机制</h2><p>View 是 Android UI 的一个基础，而事件分发机制是 View 的一个核心知识点更是一个难点，很多同学对这个问题都会比较困惑。而 View 的另一个难点滑动冲突的解决也依赖于事件分发机制。</p>
+<h3 id="1-1-MotionEvent"><a href="#1-1-MotionEvent" class="headerlink" title="1.1 MotionEvent"></a>1.1 MotionEvent</h3><p>MotionEvent 用来描述用户触发的屏幕动作的事件。</p>
+<p>当你的一个手指在屏幕上滑动一下时，系统会产生一系列的触摸事件对象。典型的事件包括：</p>
+<ul>
+<li><strong>ACTION_DOWN</strong> = 0 —— 手指触摸到屏幕</li>
+<li><strong>ACTION_UP</strong> = 1 —— 手指从屏幕上移开</li>
+<li><strong>ACTION_MOVE</strong> = 2 —— 手指在屏幕上移动</li>
+<li><strong>ACTION_CANCEL</strong> = 3 —— 动作取消</li>
+<li><strong>ACTION_OUTSIDE</strong> = 4 —— 动作超出边界</li>
+<li><strong>ACTION_POINTER_DOWN</strong> = 5 —— 已有一个点被按住，再按下另外一个点</li>
+<li><strong>ACTION_POINTER_UP</strong> = 6 —— 多点被按下的时候，非最后一个点抬起</li>
+</ul>
+<p><img src="/images/14605560667360.gif" alt=""></p>
+<p>正常情况下，一次手指触摸屏幕可能产生的事件：</p>
+<ul>
+<li>按下后直接松开  序列为： DOWN -&gt; UP</li>
+<li>按下后移动一阵之后在松开 序列为： DOWN -&gt; MOVE … -&gt; MOVE -&gt; UP</li>
+</ul>
+<p>同时我们可以通过 MotionEvent 得到点击的 坐标。为此，提供了 2组 函数 <code>getX/getY</code> 和 <code>getRawX/getRawY</code> 。区别在于：</p>
+<ul>
+<li><code>getX/getY</code> 返回相对于当前 View 左上角的坐标</li>
+<li><code>getRawX/getRawY</code> 返回相当于屏幕左上角的坐标</li>
+</ul>
+<h3 id="1-2-TouchSlop"><a href="#1-2-TouchSlop" class="headerlink" title="1.2 TouchSlop"></a>1.2 TouchSlop</h3><p>TouchSlop 是系统能识别出来的被认为是滑动的最小距离。也就是说，手指在屏幕上滑动时，如果两次滑动的距离小于这个常量，那么就不会被识别成滑动。</p>
+<p>TouchSlop 可以用来防止按键位置的抖动。这个常量是设备相关的，可以通过 <code>ViewConfiguration.getScaledTouchSlop()</code> 来获取。</p>
+<h2 id="2-点击事件的相关处理函数"><a href="#2-点击事件的相关处理函数" class="headerlink" title="2. 点击事件的相关处理函数"></a>2. 点击事件的相关处理函数</h2><p>一个点击事件 (MotionEvent) 产生以后，系统需要把这个事件传递给一个具体的 View，而这个传递的过程就是事件的分发过程。点击事件的分发过程由 3 个方法来共同完成：</p>
+<ul>
+<li>public boolean dispatchTouchEvent (MotionEvent ev)</li>
+</ul>
+<p>用来进行事件分发。如果事件能够传递给当前的 View ，那么这个方法就一定会被调用，返回结果受当前 View 的 onTouchEvent 和 子 View 的 <code>dispatchTouchEvent</code> 的影响。返回事件是否被消费。</p>
+<ul>
+<li>public boolean onInterceptTouchEvent (MotionEvent ev)</li>
+</ul>
+<p>在 <code>dispatchTouchEvent</code> 内部调用，用来判断是否拦截某个事件。返回是否拦截事件。</p>
+<ul>
+<li>public boolean onTouchEvent(MotionEvent ev)</li>
+</ul>
+<p>在 <code>dispatchTouchEvent</code> 内部调用，用来处理点击事件，返回结果表示是否消费了当前事件。</p>
+<h2 id="3-举个栗子"><a href="#3-举个栗子" class="headerlink" title="3. 举个栗子"></a>3. 举个栗子</h2><ul>
+<li>下面是一个自定义的 Activity</li>
+</ul>
+<p><img src="/images/14609483250389.png" alt=""></p>
+<ul>
+<li>布局简略关系</li>
+</ul>
+<p><img src="/images/14609484458874.png" alt=""></p>
+<ul>
+<li>事件分发</li>
+</ul>
+<p>下图显示了，没有拦截时候的事件分发顺序</p>
+<pre><code>手指在 View1 上操作时事件分发顺序
+当按下事件没有被拦截，那么所有状态的事件都由Activity进行处理
+</code></pre><p><img src="/images/14609487247618.png" alt=""></p>
+<ul>
+<li><p>事件消费<br>通过 dispatchTouchEvent 对事件进行处理，当返回值为 true 的时候表示消费了事件。</p>
+<pre><code>ViewGroup1 中的 dispatchTouchEvent 直接返回 true
+手指在 View1 上操作时事件分发顺序
+事件传递到 ViewGroup1 后被消费，后续事件没有分发给子控件
+</code></pre></li>
+</ul>
+<p><img src="/images/14609490327325.png" alt=""></p>
+<ul>
+<li><p>事件拦截<br>通过 onInterceptTouchEvent 拦截事件，当返回值为 true 的时候拦截事件</p>
+<pre><code>ViewGroup2 中的 onInterceptTouchEvent 直接返回 true
+手指在 View1 上操作时事件分发顺序
+事件传递到 ViewGroup2 后被拦截，不会再分发给子控件
+</code></pre></li>
+</ul>
+<p><img src="/images/14609602211963.png" alt=""></p>
+<ul>
+<li><p>事件处理<br>当 onTouchEvent 返回 true ，表示事件被当前控件消费</p>
+<pre><code>ViewGroup2 中的 onInterceptTouchEvent 直接返回 true
+  ViewGroup2 中的 onTouchEvent 方法中添加 按下事件 返回 true
+当手指对View1点击、移动、抬起时
+事件传递到 ViewGroup2 后被拦截，后续事件先发送给 ViewGroup2 处理，然后返回 Activity 处理
+</code></pre></li>
+</ul>
+<p><img src="/images/14609607629304.png" alt=""></p>
+<pre><code>ViewGroup2 中的 onInterceptTouchEvent 直接返回 true
+  ViewGroup2 中的 onTouchEvent 方法中 直接返回 true
+当手指对View1点击、移动、抬起时
+事件传递到 ViewGroup2 后被拦截，后续事件全部由 ViewGroup2 处理
+</code></pre><p><img src="/images/14609608813851.png" alt=""></p>
+<ul>
+<li><p>下面来看下 button 的处理</p>
+<pre><code>用 Button1 替换 View1
+其余函数使用默认实现
+button 默认就是直接截获和消费了事件
+</code></pre></li>
+</ul>
+<p><img src="/images/14609611313192.png" alt=""></p>
+<pre><code>View 的 *clickable* 属性的效果，就如同 button 一样。
+</code></pre><h2 id="4-dispatchTouchEvent-伪代码"><a href="#4-dispatchTouchEvent-伪代码" class="headerlink" title="4. dispatchTouchEvent 伪代码"></a>4. dispatchTouchEvent 伪代码</h2><p><img src="/images/14609640887128.jpg" alt=""></p>
+<ul>
+<li>对于一个根 ViewGroup 来说，点击事件产生以后，会首先传递给它，此时 它的 dispatchTouchEvent 就会被调用</li>
+<li>如果这个 ViewGroup 的 onInterceptTouchEvent 返回 true 就表示它要拦截事件，那么接下去的事件都会由这个 ViewGroup 处理，即 onTouchEvent 会被调用</li>
+<li>如果这个 ViewGroup 的 onInterceptTouchEvent 返回 false 就表示它不会拦截事件，当前事件就会传递给子控件，接着调用子控件的  dispatchTouchEvent</li>
+<li>如此反复直到事件被最终处理</li>
+<li>当一个 View 需要处理事件时，如果设置了 onTouchListener，则优先处理 onTouchListener 的 onTouch 事件，根据 onTouch 的返回值，来决定 onTouchEvent 是否被调用（true 表示消费了事件，不会再调用了 onTouchEvent）。如果设置了 onClickListener ，则会在 onTouchEvent 中被调用。</li>
+<li>如果 View 的 onTouchEvent 返回 false，即没有消费事件，就会调用父控件的 obTouchEvent ，直到 Activity 的 obTouchEvent。</li>
+</ul>
+<h2 id="5-事件传递机制的结论"><a href="#5-事件传递机制的结论" class="headerlink" title="5. 事件传递机制的结论"></a>5. 事件传递机制的结论</h2><ol>
+<li>同一个事件序列是指从手指接触屏幕的那一刻开始，直到手指离开屏幕的那一刻结束。在这个过程中产生了一系列的事件合集。这个事件序列从 DOWN 开始，中间含有数量不等的 MOVE 事件，最终以 UP 事件结束。</li>
+<li>正常情况下，一个事件序列只能被一个 View 拦截且消耗。</li>
+<li>某个 View 一旦决定拦截事件，那么这个事件序列都由它来处理，并且它的 onInterceptTouchEvent 不会再被调用，即后续事件不会再去询问是否要拦截。</li>
+<li>某个 View 一旦开始处理事件，如果它不消费 ACTION_DOWN 事件(onTouchEvent 返回 false)，则后续的事件不会交给它来处理，事件会交由它的父控件来处理（父控件的 onTouchEvent 会被调用）。</li>
+<li>如果 View 不消费除 ACTION_DOWN 以外的事件，那么这个点击事件会消失，此时父控件的 onTouchEvent 并不会被调用，并且当前 View 能收到后续事件，最终这些事件会交由 Activity 来处理。</li>
+<li>ViewGroup 默认不拦截事件，onInterceptTouchEvent 默认返回 false。</li>
+<li>View 没有 onInterceptTouchEvent ，一旦有事件到达，那么 onTouchEvent 就会被调用。</li>
+<li>View 默认会消费事件，即 onTouchEvent 返回 true，除非它是不可点击（clickable 和 longClickable 同时为 false），其中 longClickable 默认为 false；clickable 则需要根据控件讨论，button 默认返回 true；textView 默认返回 false</li>
+<li>View 的 enable 属性不影响 onTouchEvent 的默认返回值。</li>
+<li>onClick 发生的前提是当前 View 可点击，且收到了 down 和 up 事件。</li>
+<li>事件传递总是从父控件传递到子控件，子控件可以通过 requestDisallowInterceptTouchEvent 来干预父控件的事件分发，但是 ACTION_DOWN 除外。</li>
+</ol>
+<h2 id="6-参考"><a href="#6-参考" class="headerlink" title="6. 参考"></a>6. 参考</h2><ul>
+<li><a href="http://p.codekk.com/blogs/detail/54cfab086c4761e5001b253e" target="_blank" rel="external">公共技术点之 View 事件传递</a></li>
+<li><a href="http://www.jianshu.com/p/49d4043621d6" target="_blank" rel="external">View的事件分发机制</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/android/" rel="tag"># android</a>
+          
+            <a href="/tags/view/" rel="tag"># view</a>
+          
+            <a href="/tags/touchEvent/" rel="tag"># touchEvent</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/31/hexo-cdn/" rel="next" title="hexo 的 cdn 加速">
+                <i class="fa fa-chevron-left"></i> hexo 的 cdn 加速
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/25/android-bottom-navigation/" rel="prev" title="android 底部导航栏规范">
+                android 底部导航栏规范 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/04/13/android-view-touchevent/"
+     data-title="Android View 的事件机制详解"
+     data-content=""
+     data-url="http://kingzeus.github.io/2016/04/13/android-view-touchevent/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  
+    <div class="comments" id="comments">
+      <div class="ds-thread" data-thread-key="2016/04/13/android-view-touchevent/"
+           data-title="Android View 的事件机制详解" data-url="http://kingzeus.github.io/2016/04/13/android-view-touchevent/">
+      </div>
+    </div>
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://7xqfqq.com1.z0.glb.clouddn.com/blog_avatar.jpg"
+                alt="kingzeus" />
+            
+              <p class="site-author-name" itemprop="name">kingzeus</p>
+              <p class="site-description motion-element" itemprop="description">游戏是可以SL的人生<br />人生是没有NG的游戏</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/kingzeus" target="_blank" title="github">
+                    
+                      <i class="fa fa-fw fa-globe"></i>github</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.weibo.com/2405704" target="_blank" title="weibo">
+                    
+                      <i class="fa fa-fw fa-globe"></i>weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.zhihu.com/people/fan-ye-fei" target="_blank" title="zhihu">
+                    
+                      <i class="fa fa-fw fa-globe"></i>zhihu</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+              </a>
+            </div>
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-View-事件分发机制"><span class="nav-number">1.</span> <span class="nav-text">1. View 事件分发机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-MotionEvent"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 MotionEvent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-TouchSlop"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 TouchSlop</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-点击事件的相关处理函数"><span class="nav-number">2.</span> <span class="nav-text">2. 点击事件的相关处理函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-举个栗子"><span class="nav-number">3.</span> <span class="nav-text">3. 举个栗子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-dispatchTouchEvent-伪代码"><span class="nav-number">4.</span> <span class="nav-text">4. dispatchTouchEvent 伪代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-事件传递机制的结论"><span class="nav-number">5.</span> <span class="nav-text">5. 事件传递机制的结论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-参考"><span class="nav-number">6.</span> <span class="nav-text">6. 参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kingzeus</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=55046364";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"kingzeus"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

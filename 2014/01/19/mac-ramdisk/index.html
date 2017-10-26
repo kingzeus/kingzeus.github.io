@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="cYyZ5DHnbQ" />
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="osx,mac,ramdisk,脚本," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="游戏 生活" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="最后更新: 2016-03-30 修改记录: 2014-01-19 初稿，发布于 51cto 2015-01-21 增加大小保护，发布于 51cto 2016-03-30 合并之前的文章    0. 前言现在流行苹果，mbp，mba，iphone，ipad，……关键是windows上各种流氓软件越来越多，加上工作需要，于是转投了 mac。好吧，入手的 mbp 看起来很美，实际上各种卡，整天看到小">
+<meta name="keywords" content="osx,mac,ramdisk,脚本">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【无所不能的脚本】mac下的ramdisk">
+<meta property="og:url" content="http://kingzeus.github.io/2014/01/19/mac-ramdisk/index.html">
+<meta property="og:site_name" content="游戏 生活">
+<meta property="og:description" content="最后更新: 2016-03-30 修改记录: 2014-01-19 初稿，发布于 51cto 2015-01-21 增加大小保护，发布于 51cto 2016-03-30 合并之前的文章    0. 前言现在流行苹果，mbp，mba，iphone，ipad，……关键是windows上各种流氓软件越来越多，加上工作需要，于是转投了 mac。好吧，入手的 mbp 看起来很美，实际上各种卡，整天看到小">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://kingzeus.github.io/2014/01/19/mac-ramdisk/images/14593149822393.jpg">
+<meta property="og:image" content="http://kingzeus.github.io/2014/01/19/mac-ramdisk/images/14593152549913.jpg">
+<meta property="og:image" content="http://kingzeus.github.io/2014/01/19/mac-ramdisk/images/14593153601092.jpg">
+<meta property="og:image" content="http://kingzeus.github.io/images/14593153742813.jpg">
+<meta property="og:image" content="http://kingzeus.github.io/images/14593153824224.jpg">
+<meta property="og:image" content="http://kingzeus.github.io/images/14593154100049.jpg">
+<meta property="og:image" content="http://kingzeus.github.io/images/14593154195716.jpg">
+<meta property="og:image" content="http://kingzeus.github.io/images/14593154301396.jpg">
+<meta property="og:updated_time" content="2016-03-30T03:26:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【无所不能的脚本】mac下的ramdisk">
+<meta name="twitter:description" content="最后更新: 2016-03-30 修改记录: 2014-01-19 初稿，发布于 51cto 2015-01-21 增加大小保护，发布于 51cto 2016-03-30 合并之前的文章    0. 前言现在流行苹果，mbp，mba，iphone，ipad，……关键是windows上各种流氓软件越来越多，加上工作需要，于是转投了 mac。好吧，入手的 mbp 看起来很美，实际上各种卡，整天看到小">
+<meta name="twitter:image" content="http://kingzeus.github.io/2014/01/19/mac-ramdisk/images/14593149822393.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://kingzeus.github.io/2014/01/19/mac-ramdisk/"/>
+
+
+
+
+
+  <title>【无所不能的脚本】mac下的ramdisk | 游戏 生活</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">游戏 生活</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">游戏是可以SL的人生，人生是没有NG的游戏</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://kingzeus.github.io/2014/01/19/mac-ramdisk/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kingzeus">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://7xqfqq.com1.z0.glb.clouddn.com/blog_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="游戏 生活">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【无所不能的脚本】mac下的ramdisk</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-01-19T11:26:38+08:00">
+                2014-01-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/osx/" itemprop="url" rel="index">
+                    <span itemprop="name">osx</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/01/19/mac-ramdisk/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/01/19/mac-ramdisk/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li>最后更新: 2016-03-30</li>
+<li>修改记录:<ul>
+<li>2014-01-19 初稿，发布于 51cto</li>
+<li>2015-01-21 增加大小保护，发布于 51cto</li>
+<li>2016-03-30 合并之前的文章</li>
+</ul>
+</li>
+</ul>
+<h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>现在流行苹果，mbp，mba，iphone，ipad，……关键是windows上各种流氓软件越来越多，加上工作需要，于是转投了 mac。好吧，入手的 mbp 看起来很美，实际上各种卡，整天看到小菊花转啊转。好吧，屌丝买不起高配，用的是最低端的，说起来，满满的都是泪，但是生活还得继续，只能自己想办法了。</p>
+<p>优化第一步，加内存。不要问我为什么能加，老机器了，不说了，满满的都是泪。有钱的孩纸买机器的时候就加内存吧，普罗大众还是不要自己折腾吧。当然大神们可以自己动手换内存，这个也不说了。</p>
+<p>第二步，上 SSD 吧。这个真心不错，但是好东西不便宜啊，能把ssd和hdd一样随便放东西的同学，略过这篇文章吧。我的mbp是用来开发的，乱七八糟的东西占了好大的空间，于是ssd就得不停的整理空间，删除缓存文件，就为了那几个 G 的容量。最近，还碰到过因为 ssd 剩余空间是0，无法开机的悲剧。</p>
+<p>神圣的红领巾一直在前面引领着我们，生命不息，折腾不止……重点来了，我们可以利用内存来提速啊，这个在windows上已经烂大街了，不就是ramdisk么。拿出谷哥度娘，一番OOXX之后，发现没啥好用，倒是发现mac本身就能实现。身为屌丝IT男，必须自己折腾了。当然，折腾这个的前提是你的内存足够大。</p>
+<p>@#！@￥#￥@%#￥%（一星期过去了……………………）</p>
+<h2 id="1-实现"><a href="#1-实现" class="headerlink" title="1. 实现"></a>1. 实现</h2><h3 id="1-ramdisk"><a href="#1-ramdisk" class="headerlink" title="1. ramdisk"></a>1. ramdisk</h3><p>不说折腾的过程了，直接上结果吧。<br>先来说下大致的工作流程：</p>
+<ol>
+<li>开机的时候，自动调用脚本创建内存盘，然后载入需要的数据。</li>
+<li>关机的时候，自动调用脚本把内存盘数据回写硬盘，然后执行关机。</li>
+</ol>
+<p>不复杂哈，一说就明白了吧，下面来点复杂的：</p>
+<ol>
+<li><p>先来说，怎么再开机的时候运行脚本。<br> 先在你顺眼的地方建个目录，用来作为ramdisk的脚本和备份数据的工作目录。<img src="images/14593149822393.jpg" alt=""></p>
+<p> 我的目录，在/etc/下面建了个ramdisk的目录，小伙伴照着做的话，注意下权限。</p>
+</li>
+<li><p>接下来，就创建一个 login.sh 的脚本，用来再开机的时候自动运行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">#!/bin/sh</div><div class="line"> </div><div class="line"># 设置内存盘的名称</div><div class="line">DISK_NAME=RamDisk</div><div class="line">MOUNT_PATH=/Volumes/$DISK_NAME</div><div class="line"># 设置备份文件的保存路径, 注意修改下面路径中的用户名称</div><div class="line">BAK_PATH=/etc/ramdisk/$DISK_NAME.tar.gz</div><div class="line"># 设置分配给内存盘的空间大小(MB)</div><div class="line">DISK_SPACE=1024</div><div class="line"> </div><div class="line">if [ ! -e $MOUNT_PATH ]; then</div><div class="line">	diskutil erasevolume HFS+ $DISK_NAME `hdiutil attach -nomount ram://$(($DISK_SPACE*1024*2))`</div><div class="line">fi</div><div class="line">#  隐藏分区</div><div class="line">chflags hidden $MOUNT_PATH</div><div class="line"></div><div class="line">if [ -s $BAK_PATH ]; then</div><div class="line">    tar -zxf $BAK_PATH -C $MOUNT_PATH</div><div class="line">fi</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<pre><code>* ==DISK_NAME== 用来指定内存盘的名字，随便改
+* ==DISK_SPACE== 用来指定内存盘大小，这是上限值，一般情况下使用多少占多少的内存，所以放心使用吧
+* ==BAK_PATH== 用来指定内存盘的保存路径
+</code></pre><ol>
+<li><p>再创建一个logout.sh，用来在关机的时候调用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">#!/bin/sh</div><div class="line"> </div><div class="line">DISK_NAME=RamDisk</div><div class="line">MOUNT_PATH=/Volumes/$DISK_NAME</div><div class="line">WORK_PATH=/etc/ramdisk</div><div class="line">BAK_PATH=$WORK_PATH/$DISK_NAME.tar.gz</div><div class="line">LISTFILE=$WORK_PATH/list</div><div class="line"></div><div class="line"></div><div class="line">if [ -e $MOUNT_PATH ] ; then</div><div class="line">	cd $MOUNT_PATH</div><div class="line">	tar --exclude-from $LISTFILE -czf $BAK_PATH .</div><div class="line">fi</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<pre><code>* ==DISK_NAME== 用来指定内存盘的名字，要和之前的脚本一致
+* ==BAK_PATH== 用来指定内存盘的保存路径，一样要和上面的一致
+* ==LISTFILE== 忽略的文件列表
+</code></pre><h3 id="1-2-运行"><a href="#1-2-运行" class="headerlink" title="1.2 运行"></a>1.2 运行</h3><p>ramdisk搞定，然后呢？当然是怎么使用了。</p>
+<p>先在终端里面把 <code>login.sh</code>跑起来啊，跑起来。权限有问题的，可以用sudo方式。然后呢，去finder里面看看吧！</p>
+<p>什么都没有？为什么？好吧，其实再脚本里面我把内存盘隐藏了，为啥要加这么帅的操作呢？里面有没有日本的爱情动画片。因为很多小伙伴都手贱，把ramdisk卸载了之后，就会各种悲剧了。所以，事先隐藏了之后，麻麻就再也不用担心了。</p>
+<p>那怎么访问呢？有个神奇的办法，在finder的菜单里面找到前往，选择前往文件夹<br><img src="images/14593152549913.jpg" alt=""><br> 然后，输入内存盘的加载路径，也就是脚本里面的<code>MOUNT_PATH</code>，接下来就是见证奇迹的时候了……<br> <img src="images/14593153601092.jpg" alt=""></p>
+<h3 id="1-3-使用"><a href="#1-3-使用" class="headerlink" title="1.3 使用"></a>1.3 使用</h3><p>有了内存盘，里面放什么呢？爱情动作片就算了，可以把cache放在里面，这样可以加速运行速度，也可以把经常需要频繁操作的目录放进去，比如chrome的配置啊什么的……</p>
+<h4 id="1-3-1-cache-目录"><a href="#1-3-1-cache-目录" class="headerlink" title="1.3.1 cache 目录"></a>1.3.1 cache 目录</h4><p>先来处理cache：</p>
+<ul>
+<li>先把系统的cache目录移动到内存盘上去</li>
+<li>然后通过符号链接把内存盘上的目录映射回原来的目录<br><img src="/images/14593153742813.jpg" alt=""><br>对应了<br><img src="/images/14593153824224.jpg" alt=""></li>
+</ul>
+<p>不会的，给个脚本</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>!/bin/sh</div><div class="line"></div><div class="line"><span class="meta">#</span> 设置内存盘的名称</div><div class="line">DISK_NAME=RamDisk</div><div class="line">MOUNT_PATH=/Volumes/$DISK_NAME</div><div class="line"></div><div class="line"><span class="meta">#</span>Caches =》 ~/Library/Caches</div><div class="line">mv ~/Library/Caches $MOUNT_PATH</div><div class="line">ln -s /$MOUNT_PATH/Caches ~/Library/Caches</div></pre></td></tr></table></figure>
+<h4 id="1-3-2-chrome-目录"><a href="#1-3-2-chrome-目录" class="headerlink" title="1.3.2 chrome 目录"></a>1.3.2 chrome 目录</h4><p>同样处理下<br><img src="/images/14593154100049.jpg" alt=""><br>对应的是<br><img src="/images/14593154195716.jpg" alt=""></p>
+<h4 id="1-3-3-其他目录"><a href="#1-3-3-其他目录" class="headerlink" title="1.3.3 其他目录"></a>1.3.3 其他目录</h4><p>照着上面的方法,可以把你想要搬的目录全部移动到 ramdisk 上去</p>
+<p>再打开内存盘就能看到目录了<img src="/images/14593154301396.jpg" alt=""></p>
+<h3 id="1-4-配置自动运行"><a href="#1-4-配置自动运行" class="headerlink" title="1.4 配置自动运行"></a>1.4 配置自动运行</h3><p>脚本有了，关键是要能随着系统启动、关闭，自动运行起来。</p>
+<p>在终端里面运行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">defaults write com.apple.loginwindow LoginHook /etc/ramdisk/login.sh</div><div class="line">defaults write com.apple.loginwindow LogoutHook /etc/ramdisk/logout.sh</div></pre></td></tr></table></figure>
+<p>可以通过</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">defaults read com.apple.loginwindow</div></pre></td></tr></table></figure>
+<p>来检查设置是否成功。</p>
+<p>最后，重启机器看看。</p>
+<h2 id="2-脚本高级配置"><a href="#2-脚本高级配置" class="headerlink" title="2. 脚本高级配置"></a>2. 脚本高级配置</h2><p>有了ramdisk以后，mac是不是不一样了？没感觉，好吧，ramdisk不是救世主，不能减少pm2.5的，只能提高部分文件的io效率，要想那啥的，换机器+ssd才是正道。</p>
+<p>用了一阵子之后，发现ramdisk越来越大了没有？赶紧看下，果然啊，cache目录占了好多容量。</p>
+<p>很大有没有，用软件清理么？不符合懒人哲学啊。作为有追求的屌丝it男，必须用脚本。</p>
+<p>￥%￥#……%……&amp;%……（再次省略无数的探索过程……）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>!/bin/sh</div><div class="line"> </div><div class="line">DISK_NAME=RamDisk</div><div class="line">MOUNT_PATH=/Volumes/$DISK_NAME</div><div class="line">WORK_PATH=/etc/ramdisk</div><div class="line">BAK_PATH=$WORK_PATH/$DISK_NAME.tar.gz</div><div class="line">LISTFILE=$WORK_PATH/list</div><div class="line"><span class="meta">#</span>设置最大的cache大小(M)</div><div class="line">MAX_CACHE_SIZE=50</div><div class="line"></div><div class="line"><span class="meta">#</span> </div><div class="line">cd $MOUNT_PATH</div><div class="line"></div><div class="line"></div><div class="line">declare -a fa</div><div class="line">i=0</div><div class="line"><span class="meta">#</span> Caches 目录存在</div><div class="line">if [ -d "$myPath"]; then </div><div class="line">	for file in $(du -s Caches/* | sort -n)</div><div class="line">	do</div><div class="line"><span class="meta">	  fa[$</span>i]=$file</div><div class="line">	  let i=i+1</div><div class="line">	done</div><div class="line">fi</div><div class="line"></div><div class="line"></div><div class="line">size=$((i/2))</div><div class="line">echo "Caches file number:"$size</div><div class="line"></div><div class="line">cd $WORK_PATH</div><div class="line">echo ".?*"&gt;$LISTFILE</div><div class="line">for((i=0;i&lt;$size;i++))</div><div class="line">do</div><div class="line">  if (($&#123;fa[$((i*2))]&#125;&lt;(($MAX_CACHE_SIZE*1024*2)) ));then</div><div class="line">  	echo "add:"$&#123;fa[$((i*2+1))]&#125;</div><div class="line">  else</div><div class="line">  	echo $&#123;fa[$((i*2+1))]&#125;&gt;&gt;$LISTFILE</div><div class="line">  fi</div><div class="line">  </div><div class="line">done</div><div class="line"></div><div class="line"></div><div class="line">if [ -e $MOUNT_PATH ] ; then</div><div class="line">	cd $MOUNT_PATH</div><div class="line">	tar --exclude-from $LISTFILE -czf $BAK_PATH .</div><div class="line">fi</div></pre></td></tr></table></figure>
+<p>简单说明下，就是每次关机会把<code>cache</code>目录下超过50M的目录直接清掉。</p>
+<ul>
+<li>==MAX_CACHE_SIZE== 可以指定最大的cache目录大小</li>
+</ul>
+<p>重启机器，再来看下</p>
+<p>于是世界终于和平了…………</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/osx/" rel="tag"># osx</a>
+          
+            <a href="/tags/mac/" rel="tag"># mac</a>
+          
+            <a href="/tags/ramdisk/" rel="tag"># ramdisk</a>
+          
+            <a href="/tags/脚本/" rel="tag"># 脚本</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/11/04/android-log-practice/" rel="prev" title="Android 日志的优化实践">
+                Android 日志的优化实践 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2014/01/19/mac-ramdisk/"
+     data-title="【无所不能的脚本】mac下的ramdisk"
+     data-content=""
+     data-url="http://kingzeus.github.io/2014/01/19/mac-ramdisk/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  
+    <div class="comments" id="comments">
+      <div class="ds-thread" data-thread-key="2014/01/19/mac-ramdisk/"
+           data-title="【无所不能的脚本】mac下的ramdisk" data-url="http://kingzeus.github.io/2014/01/19/mac-ramdisk/">
+      </div>
+    </div>
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://7xqfqq.com1.z0.glb.clouddn.com/blog_avatar.jpg"
+                alt="kingzeus" />
+            
+              <p class="site-author-name" itemprop="name">kingzeus</p>
+              <p class="site-description motion-element" itemprop="description">游戏是可以SL的人生<br />人生是没有NG的游戏</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/kingzeus" target="_blank" title="github">
+                    
+                      <i class="fa fa-fw fa-globe"></i>github</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.weibo.com/2405704" target="_blank" title="weibo">
+                    
+                      <i class="fa fa-fw fa-globe"></i>weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.zhihu.com/people/fan-ye-fei" target="_blank" title="zhihu">
+                    
+                      <i class="fa fa-fw fa-globe"></i>zhihu</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+              </a>
+            </div>
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-前言"><span class="nav-number">1.</span> <span class="nav-text">0. 前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-实现"><span class="nav-number">2.</span> <span class="nav-text">1. 实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-ramdisk"><span class="nav-number">2.1.</span> <span class="nav-text">1. ramdisk</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-运行"><span class="nav-number">2.2.</span> <span class="nav-text">1.2 运行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-使用"><span class="nav-number">2.3.</span> <span class="nav-text">1.3 使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-1-cache-目录"><span class="nav-number">2.3.1.</span> <span class="nav-text">1.3.1 cache 目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-2-chrome-目录"><span class="nav-number">2.3.2.</span> <span class="nav-text">1.3.2 chrome 目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-3-其他目录"><span class="nav-number">2.3.3.</span> <span class="nav-text">1.3.3 其他目录</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-配置自动运行"><span class="nav-number">2.4.</span> <span class="nav-text">1.4 配置自动运行</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-脚本高级配置"><span class="nav-number">3.</span> <span class="nav-text">2. 脚本高级配置</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kingzeus</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=55046364";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"kingzeus"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
