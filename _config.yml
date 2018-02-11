@@ -119,6 +119,14 @@ pagination_dir: page
 ## Themes: https://hexo.io/themes/
 theme: next
 
+# search
+algolia:
+  applicationID: '1UY7BH2U27'
+  apiKey: '55882b9ab4e6d1e2ccbf062c37243e95'
+  adminApiKey: 'adminApiKey'
+  indexName: 'kingzeus.github.io'
+  chunkSize: 5000
+
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
