@@ -1820,7 +1820,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #3ca74d;
+  background: #5812ff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2696,4 +2696,14 @@ hr {
     width: auto;
     text-align: center;
   }
+}
+.post-toc .nav .nav-child {
+  display: block;
+}
+body {
+  background-image: url("http://7xqfqq.com1.z0.glb.clouddn.com/blog_bg.jpg");
+}
+.main-inner {
+  background: #fff;
+  padding: 40px;
 }
