@@ -102,11 +102,11 @@
 
 
   
-  <meta name="keywords" content="hexo,博客,cdn," />
+  <meta name="keywords" content="hexo,cdn,博客," />
 
 
 <meta name="description" content="最后更新: 2016-03-31 修改记录: 2014-03-31 初稿 2014-04-10 增加效果对比    最近用 hexo 搞了个博客，非常好用。不过，作为不折腾不舒服斯基，还是有很多可以瞎折腾的。 为啥要加速 目前的博客是依托于 github 的 pages 的，所以，页面访问速度不甚理想，图片的访问更甚。 另外，使用了 Next 的主题，里面使用了谷歌的字体，基于某种神秘的力量，天">
-<meta name="keywords" content="hexo,博客,cdn">
+<meta name="keywords" content="hexo,cdn,博客">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hexo 的 cdn 加速">
 <meta property="og:url" content="http://kingzeus.github.io/2016/03/31/hexo-cdn/index.html">
@@ -251,9 +251,44 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
   
 </nav>
 
@@ -485,9 +520,9 @@
           
             <a href="/tags/hexo/" rel="tag"># hexo</a>
           
-            <a href="/tags/博客/" rel="tag"># 博客</a>
-          
             <a href="/tags/cdn/" rel="tag"># cdn</a>
+          
+            <a href="/tags/博客/" rel="tag"># 博客</a>
           
         </div>
       
@@ -914,6 +949,19 @@
   
 
 
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.0.4"></script>
 
 
 
