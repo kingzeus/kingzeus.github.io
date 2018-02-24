@@ -102,11 +102,11 @@
 
 
   
-  <meta name="keywords" content="hexo,博客,cdn," />
+  <meta name="keywords" content="hexo,cdn,博客," />
 
 
 <meta name="description" content="最后更新: 2016-03-31 修改记录: 2014-03-31 初稿 2014-04-10 增加效果对比    最近用 hexo 搞了个博客，非常好用。不过，作为不折腾不舒服斯基，还是有很多可以瞎折腾的。 为啥要加速 目前的博客是依托于 github 的 pages 的，所以，页面访问速度不甚理想，图片的访问更甚。 另外，使用了 Next 的主题，里面使用了谷歌的字体，基于某种神秘的力量，天">
-<meta name="keywords" content="hexo,博客,cdn">
+<meta name="keywords" content="hexo,cdn,博客">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hexo 的 cdn 加速">
 <meta property="og:url" content="http://kingzeus.github.io/2016/03/31/hexo-cdn/index.html">
@@ -408,6 +408,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/03/31/hexo-cdn/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2016/03/31/hexo-cdn/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -415,6 +425,34 @@
 
           
 
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Symbols count in article&#58;</span>
+                
+                <span title="Symbols count in article">2.3k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">0:02</span>
+              
+            </div>
           
 
           
@@ -520,9 +558,9 @@
           
             <a href="/tags/hexo/" rel="tag"># hexo</a>
           
-            <a href="/tags/博客/" rel="tag"># 博客</a>
-          
             <a href="/tags/cdn/" rel="tag"># cdn</a>
+          
+            <a href="/tags/博客/" rel="tag"># 博客</a>
           
         </div>
       
@@ -572,6 +610,13 @@
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
 
   
 
@@ -792,7 +837,21 @@
   <span class="author" itemprop="copyrightHolder">kingzeus</span>
 
   
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="Symbols count total">24k</span>
+  
 
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="Reading time total">0:24</span>
   
 </div>
 
@@ -940,6 +999,43 @@
 
 
 
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname,
+            owner: 'kingzeus',
+            repo: 'kingzeus.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '5af5805ba1ab78f34c0f120c4d58159ea946a293',
+            
+                client_id: '6a4de646242f9403e412'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
 
 
 
