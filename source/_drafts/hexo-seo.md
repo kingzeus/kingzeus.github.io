@@ -1,6 +1,6 @@
 ---
 title: Hexo网站优化之搜索引擎优化
-date: 2016-04-19 15:21:08
+date: 2017-04-19 15:21:08
 updated: 2016-04-20 20:40:00
 tags:
 - hexo
@@ -23,6 +23,48 @@ categories:
 SEO (Search Engine Optimization)，即搜索引擎优化。对网站做SEO优化，有利于提高搜索引擎的收录速度及网页排名。下面讲解一些简单的SEO优化方法，主要针对Hexo网站。
 
 * * *
+
+## 1. url 永久化
+
+hexo 默认的永久链接（Permalinks）规则是 `网站名称／年／月／日／文章名称`。
+
+这种链接格式因为url深度超过3层，对搜索引擎不太友好。另外，如果文章名称使用中文的话，会因为编码问题，造成url失效。
+
+### 1.1 最简单的方法
+
+修改 `_config.yml` 中的 `permalink`
+
+```yaml
+#permalink: :year/:month/:day/:title/
+# 改为下面这样
+permalink: :year-:month-:day-:title.html
+```
+
+
+参数 | 结果
+----|----
+:year/:month/:day/:title/	| 2013/07/14/hello-world
+:year-:month-:day-:title.html | 2013-07-14-hello-world.html
+:category/:title | foo/bar/hello-world
+
+### 1.2 hexo-abbrlink
+
+* 安装 hexo-abbrlink
+
+```
+npm install hexo-abbrlink --save
+```
+
+* 配置_config.yml
+
+```
+# permalink: :title/  将之前的注释掉
+permalink: archives/:abbrlink.html
+abbrlink:
+  alg: crc32  # 算法：crc16(default) and crc32
+  rep: hex    # 进制：dec(default) and hex
+```
+
 
 ## 1. SEO优化之title
 
