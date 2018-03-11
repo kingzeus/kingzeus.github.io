@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://kingzeus.github.io/"/>
-  <updated>2016-04-25T06:09:21.000Z</updated>
+  <updated>2018-03-08T07:20:04.000Z</updated>
   <id>http://kingzeus.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>mac-http-server</title>
+    <link href="http://kingzeus.github.io/2018-03-08-mac-http-server.html"/>
+    <id>http://kingzeus.github.io/2018-03-08-mac-http-server.html</id>
+    <published>2018-03-08T07:20:04.000Z</published>
+    <updated>2018-03-08T07:20:04.000Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>最后更新: 1520493604000</li><li>修改记录:<ul><li>1520493604000 初稿</li></ul></li></ul><ul><li>最后更新: 2018-03-08</li><li>修改记录:<ul><li>2018-03-08 初稿</li></ul></li></ul><hr><p>Mac是一个对开发者特别友好的操作系统，除了好看的UI、好用的控制台，还有Terminal都是开发者的好助手。<br>比如在很多时候，通常需要在本地起一个http服务。</p><p>以 Mac 下的 http server 为例子。</p><h2 id="1-Python起一个静态server"><a href="#1-Python起一个静态server" class="headerlink" title="1. Python起一个静态server"></a>1. Python起一个静态server</h2><ul><li>默认8000端口</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python -m SimpleHTTPServer</div></pre></td></tr></table></figure><ul><li>可以指定端口：</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python -m SimpleHTTPServer 8080</div></pre></td></tr></table></figure><p><img src="/images/15207572835774.jpg" alt=""></p><p>python 会以当前目录作为根目录起一个本地server。</p><h2 id="2-PHP-自带-web-server"><a href="#2-PHP-自带-web-server" class="headerlink" title="2. PHP 自带 web server"></a>2. PHP 自带 web server</h2><ul><li>启动php Web Server</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php -S localhost:8080</div></pre></td></tr></table></figure><ul><li>指定网站根目录，-t命令</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php -S localhost:8080 -t /www</div></pre></td></tr></table></figure><ul><li>支持远程访问</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php -S 0.0.0.0:8080 -t /www</div></pre></td></tr></table></figure><h2 id="3-Apache"><a href="#3-Apache" class="headerlink" title="3. Apache"></a>3. Apache</h2><p>Mac自带的Apache服务器,默认80端口，启动后直接访问 <code>locahost</code> 可以看到 <code>It works!</code> 页面。</p><ul><li>查看版本信息</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">apachectl -v</div></pre></td></tr></table></figure><ul><li>启动与关闭Apache，该操作需要root权限</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apachectl start|stop</div></pre></td></tr></table></figure><p>默认 wwww 跟目录在 <code>/Library/WebServer/Documents</code>, apache的安装目录在 <code>/etc/apache2</code>.</p><p><img src="/images/15207574736240.jpg" alt=""></p><h2 id="4-nodeJS"><a href="#4-nodeJS" class="headerlink" title="4. nodeJS"></a>4. nodeJS</h2><p>推荐使用 <a href="http://www.browsersync.cn/#install" target="_blank" rel="external">browser-sync</a></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g browser-syncnpm install --save-dev browser-sync</div></pre></td></tr></table></figure><p>然后在<code>package.json</code>文件中指定启动命令：</p><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">"scripts": &#123;    "start": "browser-sync start --server --files '*.css, *.html' "&#125;</div></pre></td></tr></table></figure><p><code>browser-sync</code> 不仅可以当做http server，而且当目录下的html、js、css保存时还可以自动刷新页面，提高开发效率，重点推荐这个。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ul&gt;
+&lt;li&gt;最后更新: 1520493604000&lt;/li&gt;
+&lt;li&gt;修改记录:&lt;ul&gt;
+&lt;li&gt;1520493604000 初稿&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;最后更新: 2018-03-08&lt;/li&gt;
+&lt;li&gt;修改记录:&lt;ul&gt;
+&lt;li
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>android 底部导航栏规范</title>
